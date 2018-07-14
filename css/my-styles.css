@@ -1,0 +1,128 @@
+/* #maincontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+* {
+    box-sizing: border-box;
+}
+
+nav h1 {
+    margin: auto;
+    padding-top: 4px;
+}
+
+.restaurant-op {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#maincontent {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-options {
+    /* display: flex; */
+    flex-direction: column;    
+    justify-content: center;
+    align-items: center;
+}
+
+#inside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#restaurant-img {
+    /* restaurant.html */
+    width: 100%;
+}
+
+.reviewer {
+    background: darkslategray;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    height: 55px;
+}
+
+.reviewer p {
+    color: aliceblue;    
+    padding-top: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.reviewValue {
+    /* border: 1px solid red; */
+    font-size: 15px;
+}
+
+.reviewer, .reviewValue {
+    padding: 0 20px;
+} 
+
+.ratingValue {
+    padding-top: 10px;
+}
+.ratingValue span {
+    text-transform: uppercase;
+    background: orange;
+    margin: 5px 0 0 0;
+    padding: 5px;
+    border-radius: 5px;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+#reviews-list li {
+    padding: 0 0;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;    
+}
+/* #restaurants-list li */
+#restaurants-list li {
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+@media screen and (min-width: 412px) {
+    nav h1 {
+        padding-top: 20px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    
+    .filter-options {
+        /* display: flex; */
+        flex-direction: row;
+        height: 50px;        
+        justify-content: center;
+        align-items: center;
+    }
+
+    #restaurants-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #restaurants-list li {
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    #maincontent {
+        width: 85%;
+        margin: 0 auto;
+    }
+}

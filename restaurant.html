@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <meta charset="utf-8"> -->
+  <meta name="theme-color" content="#317EFB"/>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <!-- Normalize.css for better cross-browser consistency -->
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <!-- Main CSS file -->
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="stylesheet" href="css/my-styles.css" type="text/css">
+  <!-- <link rel="manifest" href="manifest.json"> -->
+  <title>Restaurant Info</title>
+
+</head>
+
+<body class="inside">
+  <!-- Beginning header -->
+  <header>
+    <!-- Beginning nav -->
+    <nav>
+      <h1><a href="/">Restaurant Reviews</a></h1>
+    </nav>
+    <!-- Beginning breadcrumb -->
+    <ul aria-label="Breadcrumb" id="breadcrumb" >
+      <li><a href="/">Home</a></li>
+    </ul>
+    <!-- End breadcrumb -->
+    <!-- End nav -->
+  </header>
+  <!-- End header -->
+
+  <!-- Beginning main -->
+  <main aria-roledescription="main content" id="maincontent" tabindex="1">
+    <!-- Beginning map -->
+    <section aria-hidden="true" id="map-container">
+      <div role="application" aria-hidden="true" id="map"></div>
+    </section>
+    <!-- End map -->
+
+    <!-- Beginning restaurant -->
+    <section aria-roledescription="restaurant information" id="restaurant-container"  tabindex="2">
+      <h1 aria-roledescription="restaurant name" id="restaurant-name" tabindex="3"></h1>
+      <img id="restaurant-img" alt="restaurant name">
+
+      <p aria-roledescription="restaurant cuisine type" id="restaurant-cuisine" tabindex="4"></p>
+      <p aria-roledescription="restaurant address" id="restaurant-address" tabindex="5"></p>
+      <table aria-roledescription="restaurant operation hours" id="restaurant-hours" tabindex="6"></table>
+    </section>
+    <!-- end restaurant -->
+    <!-- Beginning reviews -->
+    <section aria-roledescription="restaurant reviews section" id="reviews-container" tabindex="7">
+      <ul aria-roledescription="restaurant reviews list" id="reviews-list" tabindex="8"></ul>
+    </section>
+    <!-- End reviews -->
+  </main>
+  <!-- End main -->
+
+  <!-- Beginning footer -->
+  <footer id="footer">
+    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+  <!-- End footer -->
+
+  <!-- Beginning scripts -->
+  <script>
+    // <!-- load script after html parse -->      
+    const loadStyles = src => {
+      if (document.createStylesheet) {
+        document.createStylesheet(src);
+      } else {
+        const stylesheet = document.createElement('link');
+        stylesheet.href = src;
+        stylesheet.type = 'text/css';
+        stylesheet.rel = 'stylesheet';
+        document.getElementsByTagName('head')[0]
+                .appendChild(stylesheet);
+      }
+    }
+
+    window.onload = function() {
+      // loadStyles('css/styles.css');
+      loadStyles('css/my-styles.css');
+    }
+  </script>
+  <!-- indexedDB promisify wrapper -->
+  <script async type="text/javascript" src="js/idb.js"></script>
+  <!-- Database helpers -->
+  <script async type="text/javascript" src="js/dbhelper.js"></script>
+  <!-- Main javascript file -->
+  <script async type="text/javascript" src="js/restaurant_info.js"></script>
+  <!-- Google Maps -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCT8Z1QctL7-IVxail9kY48ptk027hHvOk&libraries=places&callback=initMap"></script>
+  <!-- End scripts -->
+
+</body>
+
+</html>

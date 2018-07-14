@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <meta charset="utf-8"> -->
+  <meta name="theme-color" content="#317EFB"/>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet"> -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- <link rel="stylesheet" href="css/my-styles.css"> -->
+  
+  <!-- favicons -->
+  <!-- <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon"> -->
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <title>Restaurant Reviews</title>
+</head>
+
+<body>
+  <header>
+    <nav role="navigation">
+      <h1><a href="/">Restaurant Reviews</a></h1>
+    </nav>
+  </header>
+
+  <main id="maincontent">
+    <section aria-hidden="true" id="map-container">
+      <div role="application" aria-hidden="true" id="map"></div>
+    </section>
+    <section class="restaurant-op">
+      <div class="filter-options">
+        <h2>Filter Results</h2>
+        <select aria-label="Select neighborhood" id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+          <option value="all">All Neighborhoods</option>
+        </select>
+        <select aria-label="Select cuisine" id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
+          <option value="all">All Cuisines</option>
+        </select>
+      </div>
+      <ul role="list" id="restaurants-list"></ul>
+    </section>
+  </main>
+  <!-- Above the fold loading -->
+  <script>
+    const loadStyles = src => {
+      if (document.createStylesheet) {
+        document.createStylesheet(src);
+      } else {
+        const stylesheet = document.createElement('link');
+        stylesheet.href = src;
+        stylesheet.type = 'text/css';
+        stylesheet.rel = 'stylesheet';
+        document.getElementsByTagName('head')[0]
+                .appendChild(stylesheet);
+      }
+    }
+
+    window.onload = function() {
+      console.log('>>> Loading googlefonts...');
+    // loadStyles('css/styles.css');
+      loadStyles('css/my-styles.css');
+    }
+  </script>
+  <script async type="text/javascript" src="js/idb.js"></script>
+  <script async type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+  <script async type="application/javascript" charset="utf-8" src="js/main.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAv4ulLWv8d6-6yj1mbzJeqmvBKlbx0dE4&libraries=places&callback=initMap"></script>
+
+
+  <footer aria-hidden="true" id="footer">
+    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+
+</body>
+
+</html>
+ 
