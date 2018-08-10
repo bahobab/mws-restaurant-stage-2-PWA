@@ -20,8 +20,11 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
+  // console.log('>>>> Main called')
   fetchNeighborhoods();
   fetchCuisines();
+  // intersect images here
+  
 });
 
 /**
@@ -29,6 +32,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
  */
 fetchNeighborhoods = () => {
   DBHelper.fetchNeighborhoods((error, neighborhoods) => {
+    // console.log('>>>>', neighborhoods)
     if (error) { // Got an error
       console.error(error);
     } else {
@@ -57,6 +61,8 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
  */
 fetchCuisines = () => {
   DBHelper.fetchCuisines((error, cuisines) => {
+    // console.log('>>>>', cuisines)
+
     if (error) { // Got an error!
       console.error(error);
     } else {
@@ -152,8 +158,8 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  */
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
-  li.role="listitem";
   li.role="tab";
+  // li.role="listitem";
 
   const image = document.createElement('img');
   image.alt = `${restaurant.name} image`;

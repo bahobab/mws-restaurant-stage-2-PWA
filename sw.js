@@ -1,6 +1,7 @@
 // set sw version
-const CACHE_VER = '3';
-const CACHE_NAME = `RestaurantReviews_${CACHE_VER}`;
+const CACHE_VER = '4';
+const CACHE_RESTAURANT = `RestaurantReviews_${CACHE_VER}`;
+const CACHE_DYNAMIC = 'RestaurantDynamic';
 
 // set static cache / app shell
 const appAssets = [
@@ -13,14 +14,15 @@ const appAssets = [
     'js/idb.js',
     'js/main.js',
     'js/restaurant_info.js',
-    'img/dest/webp'
+    'img/dest/webp',
+    'css/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2'
 ];
     // 'data/restaurants.json', // remove
     
 // install sw
 self.addEventListener('install', e => {
     e.waitUntil(
-        caches.open(CACHE_NAME)
+        caches.open(CACHE_RESTAURANT)
             .then(cache => cache.addAll(appAssets))
     );
 });
@@ -30,7 +32,7 @@ self.addEventListener('activate', e => {
     let cleaned = caches.keys()
                     .then( keys => {
                         keys.forEach( key => {
-                            if ( key !== CACHE_NAME && key.match('RestaurantReviews_')) {
+                            if ( key !== CACHE_RESTAURANT && key.match('RestaurantReviews_')) {
                                 return caches.delete(key);
                             }
                         });
@@ -50,36 +52,30 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', evt => {
     const getCustomResponsePromise = async () => {
-        // console.log(`URL: ${evt.request.url}, LOCATION ORIG: ${location}`);
 
         try {
             // get form cache first
             const cachedResponse = await caches.match(evt.request);
             if (cachedResponse) {
                 // respond with the value in the cache
-                // console.log(`Respond with cached response: ${cachedResponse}`);
                 return cachedResponse;
             }
             // response not in cache, then respond with network
-            const netResponse = await fetch(evt.request);
+            const netResponse = await fetch(evt.request); // , {headers:{'Cache-control': 'max-age=3600'}}
+            // netResponse.headers.set('Cache-control', 'max-age=3600');
 
             // add fetched response to cache
             const request = evt.request;
             const url = new URL(request.url);
-
-            // console.log('...> location url', evt.request.url);
-            // console.log('...> request origin', location.origin);
-            // event.request.url.match(location.origin)
-            
         
             if (evt.request.url.match(location.origin)) {
-                // if (url.origin === location.url) {            
-                // don't add to cache if origin is not local
-                // we'll persist them to indexedDB
-                let cache = await caches.open(CACHE_NAME);
-                // console.log('$$$ Adding to cache');
+                let cache = await caches.open(CACHE_RESTAURANT);
                 cache.put(evt.request, netResponse.clone());
-            }
+            } 
+            // else {
+            //     let cache = await caches.open(CACHE_DYNAMIC);
+            //     cache.put(evt.request, netResponse.clone());
+            // }
 
             return netResponse;
         } catch (error) {

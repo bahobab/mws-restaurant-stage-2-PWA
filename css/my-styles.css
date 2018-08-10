@@ -4,6 +4,12 @@
     justify-content: center;
 } */
 
+@font-face {
+    font-family: 'Arvo';
+    font-display: auto;
+    src: local('Arvo'), url("//normalize-css.googlecode.com/svn/trunk/normalize.css");
+}
+
 * {
     box-sizing: border-box;
 }
